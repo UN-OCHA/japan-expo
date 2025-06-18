@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Day I Will – Globe UI</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="globeViz"></div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <div class="sidebar" id="sidebar">
+      <span class="close-btn" onclick="closeSidebar()">×</span>
+      <h2 id="countryTitle">Country name</h2>
+      <p><strong>People in need:</strong> <span id="pin">...</span></p>
+      <p><strong>Main concerns:</strong> <span id="concerns">...</span></p>
+      <p><strong>Funding:</strong> <span id="funding">...</span></p>
+      <p id="summary">Short summary here...</p>
+      <a id="readMore" href="#" target="_blank"
+        >Read more on humanitarianaction.info</a
+      >
+      <h3>Portraits</h3>
+      <div class="photo-gallery" id="photoGallery"></div>
+    </div>
+
+    <!-- Lightbox overlay -->
+    <div id="lightbox" class="lightbox hidden">
+      <span class="lightbox-close" onclick="closeLightbox()">×</span>
+      <img id="lightbox-img" src="" alt="Full portrait" />
+      <p id="lightbox-caption"></p>
+    </div>
+
+    <script src="https://unpkg.com/three"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
