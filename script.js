@@ -34,6 +34,7 @@ const countries = [
       "Japan has faced significant natural disasters over the years, including earthquakes and tsunamis. OCHA continues to promote awareness and preparedness efforts.",
     readMore: "https://humanitarianaction.info/plan/japan",
     portraits: ["img/japan1.jpg", "img/japan2.jpg"],
+    caption: "A child in Goma hopes to become a teacher someday.",
   },
   {
     name: "Syria",
