@@ -11,7 +11,6 @@ const countries = [
     readMore: "https://humanitarianaction.info/plan/123",
     portraits: ["img/drc.jpg"],
   },
-
   {
     name: "Honduras",
     lat: 15.2,
@@ -24,7 +23,6 @@ const countries = [
     readMore: "https://humanitarianaction.info/plan/honduras",
     portraits: ["img/honduras.jpg"],
   },
-
   {
     name: "Japan",
     lat: 36.2048,
@@ -37,7 +35,6 @@ const countries = [
     readMore: "https://humanitarianaction.info/plan/japan",
     portraits: ["img/japan1.jpg", "img/japan2.jpg"],
   },
-
   {
     name: "Syria",
     lat: 34.8021,
@@ -61,7 +58,7 @@ const world = Globe()(document.getElementById("globeViz"))
   .pointAltitude(0.001)
   .pointRadius(2)
   .pointsData(countries)
-  .pointColor(() => "rgba(237, 24, 71, 0.7)") // Semi-transparent red
+  .pointColor(() => "rgba(237, 24, 71, 0.7)")
   .labelsData(countries)
   .labelLat((d) => d.lat)
   .labelLng((d) => d.lng)
@@ -69,22 +66,21 @@ const world = Globe()(document.getElementById("globeViz"))
   .labelSize(1.2)
   .labelColor(() => "white")
   .labelDotRadius(0)
-  .labelResolution(0); // Disables glow that can appear on hover
+  .labelResolution(0);
 
 // Set initial zoom and center
 world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
 
 // Enable auto-rotate
 world.controls().autoRotate = true;
-world.controls().autoRotateSpeed = 0.35; // adjust speed if needed
+world.controls().autoRotateSpeed = 0.35;
 
 world.onPointClick((point) => {
   world.pointOfView({ lat: point.lat, lng: point.lng, altitude: 1.5 }, 1000);
   showSidebar(point);
 });
 
-//SIDEBAR FUNCTIONALITY
-
+// SIDEBAR FUNCTIONALITY
 function showSidebar(data) {
   document.getElementById("countryTitle").textContent = data.name;
   document.getElementById("pin").textContent = data.pin;
@@ -112,8 +108,20 @@ function showSidebar(data) {
 }
 
 function closeSidebar() {
-  document.getElementById("sidebar").classList.remove("visible");
-
-  // Reset globe view to center
+  document.querySelector(".sidebar").classList.remove("visible");
   world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 }, 1000);
 }
+
+function openLightbox(url, caption) {
+  document.getElementById("lightbox-img").src = url;
+  document.getElementById("lightbox-caption").textContent = caption || "";
+  document.getElementById("lightbox").classList.remove("hidden");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.add("hidden");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLightbox();
+});
