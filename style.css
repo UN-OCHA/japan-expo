@@ -126,20 +126,16 @@ body {
   box-sizing: border-box;
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 0.4s ease, transform 0.4s ease;
   pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  visibility: hidden;
 }
 
-.lightbox:not(.hidden) {
+.lightbox.visible {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
-}
-
-.hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
+  visibility: visible;
 }
 
 .lightbox img {

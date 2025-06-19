@@ -114,12 +114,23 @@ function openLightbox(url, caption) {
   const lightbox = document.getElementById("lightbox");
   document.getElementById("lightbox-img").src = url;
   document.getElementById("lightbox-caption").textContent = caption || "";
-  lightbox.classList.remove("hidden");
+
+  lightbox.style.visibility = "visible";
+  lightbox.style.pointerEvents = "auto";
+  lightbox.classList.add("visible");
 }
 
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
-  lightbox.classList.add("hidden");
+  lightbox.classList.remove("visible");
+
+  // Delay pointer-events and visibility until transition ends
+  setTimeout(() => {
+    if (!lightbox.classList.contains("visible")) {
+      lightbox.style.visibility = "hidden";
+      lightbox.style.pointerEvents = "none";
+    }
+  }, 400); // matches transition duration
 }
 
 document.addEventListener("keydown", (e) => {
