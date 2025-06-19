@@ -99,21 +99,27 @@ function showSidebar(data) {
   });
 
   document.querySelector(".sidebar").classList.add("visible");
+  document.getElementById("overlay").classList.add("visible");
 }
 
 function closeSidebar() {
   document.querySelector(".sidebar").classList.remove("visible");
+  document.getElementById("overlay").classList.remove("visible");
   world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 }, 1000);
 }
 
+document.getElementById("overlay").addEventListener("click", closeSidebar);
+
 function openLightbox(url, caption) {
+  const lightbox = document.getElementById("lightbox");
   document.getElementById("lightbox-img").src = url;
   document.getElementById("lightbox-caption").textContent = caption || "";
-  document.getElementById("lightbox").classList.remove("hidden");
+  lightbox.classList.remove("hidden");
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").classList.add("hidden");
+  const lightbox = document.getElementById("lightbox");
+  lightbox.classList.add("hidden");
 }
 
 document.addEventListener("keydown", (e) => {
