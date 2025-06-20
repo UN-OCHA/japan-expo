@@ -118,9 +118,9 @@ body {
   height: 100vh;
   background: rgba(0, 0, 0, 0.95);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2rem;
   z-index: 9999;
   box-sizing: border-box;
@@ -128,14 +128,22 @@ body {
   transform: scale(0.95);
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  visibility: hidden;
+  color: #fff;
+}
+
+.lightbox-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  max-width: 90vw;
+  margin-left: 10vw;
 }
 
 .lightbox.visible {
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
-  visibility: visible;
 }
 
 .lightbox img {
@@ -159,11 +167,17 @@ body {
   z-index: 10000;
 }
 
+#lightbox-text {
+  max-width: 40%;
+  margin-left: 2rem;
+  color: white;
+}
+
 #lightbox-caption {
   color: white;
   margin-top: 1rem;
-  text-align: center;
-  max-width: 80%;
+  white-space: pre-line;
+  line-height: 1.4;
 }
 
 #overlay {
@@ -213,11 +227,11 @@ body {
   8. Responsive  media queries
    =========================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .sidebar {
     width: 75vw;
     font-size: 0.95rem;
-    padding: 1.5rem;
+    padding: 1.5rem 3.5rem 1.5rem 1.5rem;
   }
 
   .photo-gallery {
@@ -225,9 +239,21 @@ body {
     gap: 10px;
   }
 
+  .lightbox-inner {
+    flex-direction: column;
+    align-items: center;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  #lightbox-text {
+    padding-top: 1rem;
+    max-width: 90%;
+  }
   .lightbox img {
-    max-width: 95%;
-    max-height: 70vh;
+    max-width: 90vw;
+    height: auto;
+    max-height: 60vh;
   }
 
   #lightbox-caption {

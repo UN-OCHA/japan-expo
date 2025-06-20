@@ -13,13 +13,46 @@ let currentLang = "en"; // 'en' or 'ja'
 
 // Load dynamic data from Google Sheets
 async function loadCountriesFromSheet() {
-  const response = await fetch(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-iY7Yod_hbDIH5OAJR0k6avIzhUagFTXto8U1rANVEiwo5kH17IBje9j64-M2hKBva9Nn7V0-4tjw/pub?output=csv"
-  );
-  const csvText = await response.text();
+  const infoUrl =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-iY7Yod_hbDIH5OAJR0k6avIzhUagFTXto8U1rANVEiwo5kH17IBje9j64-M2hKBva9Nn7V0-4tjw/pub?gid=0&single=true&output=csv";
+  const photosUrl =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vR-iY7Yod_hbDIH5OAJR0k6avIzhUagFTXto8U1rANVEiwo5kH17IBje9j64-M2hKBva9Nn7V0-4tjw/pub?gid=1122394290&single=true&output=csv";
 
-  const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-  const countries = parsed.data.map((row) => ({
+  const [infoRes, photosRes] = await Promise.all([
+    fetch(infoUrl),
+    fetch(photosUrl),
+  ]);
+
+  const [infoText, photosText] = await Promise.all([
+    infoRes.text(),
+    photosRes.text(),
+  ]);
+
+  const infoParsed = Papa.parse(infoText, {
+    header: true,
+    skipEmptyLines: true,
+  });
+  const photosParsed = Papa.parse(photosText, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  const photoMap = {};
+  photosParsed.data.forEach((p) => {
+    const country = p.country?.trim();
+    if (!photoMap[country]) photoMap[country] = [];
+    photoMap[country].push({
+      url: p.url?.trim(),
+      title: p.title?.trim(),
+      subtitle: p.subtitle?.trim(),
+      caption: p.caption?.trim(),
+      title_ja: p.title_ja?.trim(),
+      subtitle_ja: p.subtitle_ja?.trim(),
+      caption_ja: p.caption_ja?.trim(),
+    });
+  });
+
+  const countries = infoParsed.data.map((row) => ({
     name: row.name?.trim(),
     name_ja: row.name_ja?.trim(),
     lat: parseFloat(row.lat),
@@ -32,13 +65,7 @@ async function loadCountriesFromSheet() {
     funding_ja: row.funding_ja?.trim(),
     summary: row.summary?.trim(),
     summary_ja: row.summary_ja?.trim(),
-    portraits: row.portraits?.split("|").map((p) => p.trim()),
-    photoTitle: row.photoTitle?.trim(),
-    photoTitle_ja: row.photoTitle_ja?.trim(),
-    photoSubtitle: row.photoSubtitle?.trim(),
-    photoSubtitle_ja: row.photoSubtitle_ja?.trim(),
-    photoCaption: row.photoCaption?.trim(),
-    photoCaption_ja: row.photoCaption_ja?.trim(),
+    photos: photoMap[row.name?.trim()] || [],
   }));
 
   world.pointsData(countries);
@@ -78,23 +105,16 @@ function showSidebar(data) {
     data[`funding${lang}`] || data.funding;
   document.getElementById("summary").textContent =
     data[`summary${lang}`] || data.summary;
-  document.getElementById("photoTitle").textContent =
-    data[`photoTitle${lang}`] || data.photoTitle;
-  document.getElementById("photoSubtitle").textContent =
-    data[`photoSubtitle${lang}`] || data.photoSubtitle;
 
   const gallery = document.getElementById("photoGallery");
   gallery.innerHTML = "";
 
-  data.portraits.forEach((url, i) => {
+  data.photos.forEach((photo, i) => {
     const img = document.createElement("img");
-    img.src = url;
+    img.src = photo.url || "";
+    console.log("Photo:", photo);
     img.alt = `Portrait ${i + 1}`;
-
-    const lang = currentLang === "ja" ? "_ja" : "";
-    const caption = data[`photoCaption${lang}`] || data.photoCaption || "";
-
-    img.addEventListener("click", () => openLightbox(url, caption));
+    img.addEventListener("click", () => openLightbox(photo));
     gallery.appendChild(img);
   });
 
@@ -110,27 +130,25 @@ function closeSidebar() {
 
 document.getElementById("overlay").addEventListener("click", closeSidebar);
 
-function openLightbox(url, caption) {
-  const lightbox = document.getElementById("lightbox");
-  document.getElementById("lightbox-img").src = url;
-  document.getElementById("lightbox-caption").textContent = caption || "";
+function openLightbox(photo) {
+  const lang = currentLang === "ja" ? "_ja" : "";
 
-  lightbox.style.visibility = "visible";
-  lightbox.style.pointerEvents = "auto";
-  lightbox.classList.add("visible");
+  document.getElementById("lightbox-img").src = photo.url;
+  document.getElementById("lightbox-title").textContent =
+    photo[`title${lang}`] || photo.title || "";
+  document.getElementById("lightbox-subtitle").textContent =
+    photo[`subtitle${lang}`] || photo.subtitle || "";
+  const rawCaption = photo[`caption${lang}`] || photo.caption || "";
+  document.getElementById("lightbox-caption").innerHTML = rawCaption.replace(
+    /\n/g,
+    "<br><br>"
+  );
+
+  document.getElementById("lightbox").classList.add("visible");
 }
 
 function closeLightbox() {
-  const lightbox = document.getElementById("lightbox");
-  lightbox.classList.remove("visible");
-
-  // Delay pointer-events and visibility until transition ends
-  setTimeout(() => {
-    if (!lightbox.classList.contains("visible")) {
-      lightbox.style.visibility = "hidden";
-      lightbox.style.pointerEvents = "none";
-    }
-  }, 400); // matches transition duration
+  document.getElementById("lightbox").classList.remove("visible");
 }
 
 document.addEventListener("keydown", (e) => {

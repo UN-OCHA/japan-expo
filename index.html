@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One Day I Will – Globe UI</title>
+    <title>One Day I Will - United Nations OCHA</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
@@ -41,15 +41,19 @@
 
       <p id="summary">Short summary here...</p>
 
-      <h3 id="photoTitle">Portrait Title</h3>
-      <h4 id="photoSubtitle">Portrait Subtitle</h4>
       <div class="photo-gallery" id="photoGallery"></div>
     </div>
 
     <div id="lightbox" class="lightbox">
       <span class="lightbox-close" onclick="closeLightbox()">×</span>
-      <img id="lightbox-img" src="" alt="Full portrait" />
-      <p id="lightbox-caption"></p>
+      <div class="lightbox-inner">
+        <img id="lightbox-img" src="" alt="Full portrait" />
+        <div id="lightbox-text">
+          <h3 id="lightbox-title"></h3>
+          <h4 id="lightbox-subtitle"></h4>
+          <p id="lightbox-caption"></p>
+        </div>
+      </div>
     </div>
 
     <script src="https://unpkg.com/three"></script>
