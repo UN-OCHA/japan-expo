@@ -125,7 +125,7 @@ function showSidebar(data) {
 function closeSidebar() {
   document.querySelector(".sidebar").classList.remove("visible");
   document.getElementById("overlay").classList.remove("visible");
-  world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 }, 1000);
+  // world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 }, 1000);
 }
 
 document.getElementById("overlay").addEventListener("click", closeSidebar);
