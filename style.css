@@ -9,7 +9,8 @@
    6. Lightbox (fullscreen image viewer)
    7. Menu
    8. Branding
-   9. Responsive media queries
+   9. Funding chart
+   10. Responsive media queries
 
    ==================================================== */
 
@@ -249,7 +250,23 @@ body {
 }
 
 /* ===========================================
-  9. Responsive  media queries
+  9. Funding chart
+   =========================================== */
+.funding-chart-wrapper {
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+#fundingChart {
+  width: 100%;
+  max-width: 244px;
+  max-height: 48px;
+  height: auto;
+  display: block;
+}
+
+/* ===========================================
+  10. Responsive  media queries
    =========================================== */
 
 @media (max-width: 1024px) {

@@ -5,7 +5,7 @@ const world = Globe()(document.getElementById("globeViz"))
   .atmosphereColor("#88ccff")
   .atmosphereAltitude(0.25)
   .backgroundColor("#1a1a1a")
-  .pointAltitude(0.003)
+  .pointAltitude(0.002)
   .pointRadius(1.5)
   .pointColor(() => "rgba(237, 24, 71, 0.7)");
 
@@ -95,6 +95,7 @@ function showSidebar(data) {
     currentLang === "ja" ? "主な懸念事項：" : "Main concerns:";
   document.getElementById("label-funding").textContent =
     currentLang === "ja" ? "人道支援資金：" : "Humanitarian funding:";
+  drawFundingChart(data[`funding${lang}`] || data.funding);
 
   document.getElementById("countryTitle").textContent =
     data[`name${lang}`] || data.name;
@@ -194,4 +195,88 @@ function updateLanguage() {
   ) {
     showSidebar(currentCountry);
   }
+}
+
+// Funding charts
+function parseFundingString(str) {
+  const match = str.match(/([\d.]+)% of \$([\d.]+) million/i);
+  if (!match) return null;
+  const percent = parseFloat(match[1]);
+  const total = parseFloat(match[2]);
+  const funded = +((total * percent) / 100).toFixed(1);
+  const gap = +(total - funded).toFixed(1);
+  return { funded, gap, total, percent };
+}
+
+let fundingChartInstance = null;
+
+function drawFundingChart(fundingText) {
+  const data = parseFundingString(fundingText);
+  if (!data) return;
+
+  const ctx = document.getElementById("fundingChart").getContext("2d");
+
+  if (fundingChartInstance) {
+    fundingChartInstance.destroy();
+  }
+
+  fundingChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [""], // single row, no label
+      datasets: [
+        {
+          label: "Funded",
+          data: [data.funded],
+          backgroundColor: "#009edb",
+        },
+        {
+          label: "Gap",
+          data: [data.gap],
+          backgroundColor: "#e0e0e0",
+        },
+      ],
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+
+      interaction: {
+        mode: "nearest",
+        intersect: true,
+      },
+      events: ["click"],
+
+      scales: {
+        x: {
+          stacked: true,
+          display: false,
+        },
+        y: {
+          stacked: true,
+          display: false,
+        },
+      },
+
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: "#000",
+          bodyColor: "#fff",
+          borderWidth: 0,
+          padding: {
+            top: 4,
+            bottom: 4,
+            left: 12,
+            right: 12,
+          },
+          cornerRadius: 2,
+          displayColors: false,
+          callbacks: {
+            label: (context) => `${context.dataset.label}: $${context.raw}M`,
+          },
+        },
+      },
+    },
+  });
 }
