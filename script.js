@@ -5,9 +5,9 @@ const world = Globe()(document.getElementById("globeViz"))
   .atmosphereColor("#88ccff")
   .atmosphereAltitude(0.25)
   .backgroundColor("#1a1a1a")
-  .pointAltitude(0.002)
-  .pointRadius(2)
-  .pointColor(() => "rgba(237, 24, 71, 0.5)");
+  .pointAltitude(0.003)
+  .pointRadius(1.5)
+  .pointColor(() => "rgba(237, 24, 71, 0.7)");
 
 let currentLang = "en"; // 'en' or 'ja'
 
@@ -75,7 +75,7 @@ loadCountriesFromSheet();
 
 world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
 world.controls().autoRotate = true;
-world.controls().autoRotateSpeed = 0.2;
+world.controls().autoRotateSpeed = 0.1;
 world.pointLabel(() => null);
 
 world.onPointClick((point) => {
