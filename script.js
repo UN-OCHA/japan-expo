@@ -95,15 +95,32 @@ function showSidebar(data) {
     currentLang === "ja" ? "主な懸念事項：" : "Main concerns:";
   document.getElementById("label-funding").textContent =
     currentLang === "ja" ? "人道支援資金：" : "Humanitarian funding:";
-  drawFundingChart(data[`funding${lang}`] || data.funding);
 
   document.getElementById("countryTitle").textContent =
     data[`name${lang}`] || data.name;
-  document.getElementById("pin").textContent = data[`pin${lang}`] || data.pin;
+  const pinValue = data[`pin${lang}`] || data.pin;
+  const pinBlock = document.getElementById("pinBlock");
+
+  if (!pinValue || pinValue.trim() === "") {
+    pinBlock.style.display = "none";
+  } else {
+    pinBlock.style.display = "block";
+    document.getElementById("pin").textContent = pinValue;
+  }
   document.getElementById("concerns").textContent =
     data[`concerns${lang}`] || data.concerns;
   document.getElementById("funding").textContent =
     data[`funding${lang}`] || data.funding;
+  const fundingValue = data[`funding${lang}`] || data.funding;
+  const fundingBlock = document.getElementById("fundingBlock");
+
+  if (!fundingValue || fundingValue.trim() === "") {
+    fundingBlock.style.display = "none";
+  } else {
+    fundingBlock.style.display = "block";
+    drawFundingChart(fundingValue);
+  }
+
   document.getElementById("summary").textContent =
     data[`summary${lang}`] || data.summary;
 

@@ -26,24 +26,28 @@
     <div class="sidebar">
       <span class="close-btn" onclick="closeSidebar()">×</span>
       <h2 id="countryTitle">Country name</h2>
-      <p>
-        <strong id="label-pin">People in need:</strong>
-        <span id="pin">...</span>
-      </p>
+      <div id="pinBlock">
+        <p>
+          <strong id="label-pin">People in need:</strong>
+          <span id="pin">...</span>
+        </p>
+      </div>
+
       <p>
         <strong id="label-concerns">Main concerns:</strong>
         <span id="concerns">...</span>
       </p>
-      <p>
-        <strong id="label-funding">Funding:</strong>
-        <span id="funding">...</span>
-      </p>
+      <div id="fundingBlock">
+        <p>
+          <strong id="label-funding">Funding:</strong>
+          <span id="funding">...</span>
+        </p>
 
-      <!-- Funding chart  -->
-      <div class="funding-chart-wrapper">
-        <canvas id="fundingChart"></canvas>
+        <!-- Funding chart  -->
+        <div class="funding-chart-wrapper">
+          <canvas id="fundingChart"></canvas>
+        </div>
       </div>
-
       <p id="summary">Short summary here...</p>
 
       <div class="photo-gallery" id="photoGallery"></div>
