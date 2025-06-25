@@ -121,8 +121,10 @@ function showSidebar(data) {
     drawFundingChart(fundingValue);
   }
 
-  document.getElementById("summary").textContent =
-    data[`summary${lang}`] || data.summary;
+  const summary = data[`summary${lang}`] || data.summary;
+  document.getElementById("summary").innerHTML = summary
+    ? summary.replace(/\n/g, "<br><br>")
+    : "";
 
   const gallery = document.getElementById("photoGallery");
   gallery.innerHTML = "";

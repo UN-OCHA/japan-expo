@@ -25,6 +25,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+p {
+  line-height: 1.4;
+}
+
 /* ===========================================
    2. Globe container and tooltip
    =========================================== */
