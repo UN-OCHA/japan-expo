@@ -91,7 +91,8 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 12px;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .photo-gallery img {
