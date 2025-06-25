@@ -7,7 +7,10 @@
    4. Sidebar panel and content
    5. Photo gallery in sidebar
    6. Lightbox (fullscreen image viewer)
-   7. Utility
+   7. Menu
+   8. Branding
+   9. Responsive media queries
+
    ==================================================== */
 
 /* ===========================================
@@ -204,8 +207,8 @@ body {
    =========================================== */
 #language-toggle {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 36px;
+  left: 36px;
   color: white;
   font-size: 16px;
   z-index: 20;
@@ -225,7 +228,28 @@ body {
 }
 
 /* ===========================================
-  8. Responsive  media queries
+  8. Branding
+   =========================================== */
+
+#branding-logos {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 44px;
+  pointer-events: none;
+}
+
+#branding-logos img {
+  height: 48px;
+  pointer-events: auto;
+}
+
+/* ===========================================
+  9. Responsive  media queries
    =========================================== */
 
 @media (max-width: 1024px) {
