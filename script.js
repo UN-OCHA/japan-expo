@@ -68,6 +68,23 @@ async function loadCountriesFromSheet() {
     photos: photoMap[row.name?.trim()] || [],
   }));
 
+  // ✅ Preload images and parse funding
+  countries.forEach((country) => {
+    // Preload images
+    country.photos.forEach((photo) => {
+      if (photo.url) {
+        const img = new Image();
+        img.src = photo.url;
+      }
+    });
+
+    // Pre-parse funding
+    const fundingStr = country.funding;
+    if (fundingStr) {
+      parseFundingString(fundingStr);
+    }
+  });
+
   world.pointsData(countries);
 }
 

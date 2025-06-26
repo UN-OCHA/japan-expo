@@ -262,7 +262,7 @@ p {
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 9;
   transition: background 0.2s ease;
 }
 
@@ -307,11 +307,11 @@ p {
   color: #fff;
 }
 
-.close-btn {
+.close-btn-modal {
   position: absolute;
   top: 12px;
   right: 20px;
-  font-size: 28px;
+  font-size: 36px;
   cursor: pointer;
   color: #fff;
 }
