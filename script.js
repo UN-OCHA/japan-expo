@@ -235,10 +235,17 @@ function updateLanguage() {
 
 // Funding charts
 function parseFundingString(str) {
-  const match = str.match(/([\d.]+)% of \$([\d.]+) million/i);
+  const match = str.match(/([\d.]+)% of \$([\d.]+) (million|billion)/i);
   if (!match) return null;
+
   const percent = parseFloat(match[1]);
-  const total = parseFloat(match[2]);
+  let total = parseFloat(match[2]);
+  const unit = match[3].toLowerCase();
+
+  if (unit === "billion") {
+    total *= 1000; // Convert to millions
+  }
+
   const funded = +((total * percent) / 100).toFixed(1);
   const gap = +(total - funded).toFixed(1);
   return { funded, gap, total, percent };
