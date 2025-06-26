@@ -88,7 +88,7 @@ p {
   position: absolute;
   top: 12px;
   right: 24px;
-  font-size: 60px;
+  font-size: 48px;
   cursor: pointer;
 }
 
@@ -170,7 +170,7 @@ p {
   position: absolute;
   top: 12px;
   right: 24px;
-  font-size: 60px;
+  font-size: 48px;
   color: white;
   cursor: pointer;
   z-index: 10000;
