@@ -233,6 +233,23 @@ p {
   right: 28px;
 }
 
+.close-btn i,
+.lightbox-close i,
+.close-btn-modal i {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover i,
+.lightbox-close:hover i,
+.close-btn-modal:hover i {
+  transform: scale(1.1);
+  color: #009edb;
+}
+
 /* ===========================================
   7. Menu
    =========================================== */
