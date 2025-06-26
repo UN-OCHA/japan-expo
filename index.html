@@ -60,6 +60,17 @@
     <div id="lightbox" class="lightbox">
       <span class="lightbox-close" onclick="closeLightbox()">×</span>
       <div class="lightbox-inner">
+        <button
+          id="prev-photo"
+          class="lightbox-nav"
+          aria-label="Previous photo"
+        >
+          <i class="fas fa-circle-arrow-left"></i>
+        </button>
+        <button id="next-photo" class="lightbox-nav" aria-label="Next photo">
+          <i class="fas fa-circle-arrow-right"></i>
+        </button>
+
         <img id="lightbox-img" src="" alt="Full portrait" />
         <div id="lightbox-text">
           <h3 id="lightbox-title"></h3>

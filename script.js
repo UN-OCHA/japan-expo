@@ -1,3 +1,8 @@
+// Variables for gallery
+let currentPhotoIndex = 0;
+let currentPhotoList = [];
+
+// Globe starts
 const world = Globe()(document.getElementById("globeViz"))
   .globeImageUrl("//unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
   .bumpImageUrl(null)
@@ -104,6 +109,7 @@ world.onPointClick((point) => {
 
 function showSidebar(data) {
   const lang = currentLang === "ja" ? "_ja" : "";
+  currentPhotoList = data.photos;
 
   // Update label headings based on language
   document.getElementById("label-pin").textContent =
@@ -169,6 +175,8 @@ document.getElementById("overlay").addEventListener("click", closeSidebar);
 
 function openLightbox(photo) {
   const lang = currentLang === "ja" ? "_ja" : "";
+
+  currentPhotoIndex = currentPhotoList.indexOf(photo);
 
   document.getElementById("lightbox-img").src = photo.url;
   document.getElementById("lightbox-title").textContent =
@@ -339,4 +347,18 @@ window.addEventListener("click", function (event) {
   if (event.target === modal && !content.contains(event.target)) {
     closeInfoModal();
   }
+});
+
+// Navigation buttons for lightbox
+document.getElementById("prev-photo").addEventListener("click", () => {
+  if (currentPhotoList.length === 0) return;
+  currentPhotoIndex =
+    (currentPhotoIndex - 1 + currentPhotoList.length) % currentPhotoList.length;
+  openLightbox(currentPhotoList[currentPhotoIndex]);
+});
+
+document.getElementById("next-photo").addEventListener("click", () => {
+  if (currentPhotoList.length === 0) return;
+  currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotoList.length;
+  openLightbox(currentPhotoList[currentPhotoIndex]);
 });

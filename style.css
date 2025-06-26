@@ -207,6 +207,32 @@ p {
   pointer-events: auto;
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+  font-size: 48px;
+  color: white;
+  padding: 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-nav:hover {
+  transform: translateY(-50%) scale(1.1);
+  color: #009edb;
+}
+#prev-photo {
+  left: 28px;
+}
+
+#next-photo {
+  right: 28px;
+}
+
 /* ===========================================
   7. Menu
    =========================================== */
