@@ -8,7 +8,7 @@
    5. Photo gallery in sidebar
    6. Lightbox (fullscreen image viewer)
    7. Menu
-   8. Branding
+   8. Branding and info
    9. Funding chart
    10. Responsive media queries
 
@@ -233,7 +233,7 @@ p {
 }
 
 /* ===========================================
-  8. Branding
+  8. Branding and info
    =========================================== */
 
 #branding-logos {
@@ -251,6 +251,69 @@ p {
 #branding-logos img {
   height: 48px;
   pointer-events: auto;
+}
+#info-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 22px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.2s ease;
+}
+
+#info-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9998;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  margin: 10vh auto;
+  padding: 2rem;
+  border-radius: 8px;
+  color: #ccc;
+  width: 90%;
+  max-width: 700px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.modal-content h2 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+}
+
+.modal-content strong {
+  color: #fff;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
 }
 
 /* ===========================================

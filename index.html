@@ -10,6 +10,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -76,6 +80,43 @@
         src="img/0_one_dat_i_will_logo.png"
         alt="One Day I Will logo"
       />
+    </div>
+    <div id="info-button" title="About this exhibit">
+      <i class="fas fa-circle-info"></i>
+    </div>
+
+    <div id="info-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeInfoModal()">×</span>
+        <h2>About this exhibit</h2>
+        <p>
+          The boundaries and names shown and the designations used on this map
+          do not imply official endorsement or acceptance by the United Nations.
+        </p>
+
+        <p>
+          <strong>UN OCHA</strong><br />
+          The United Nations Office for the Coordination of Humanitarian Affairs
+          (OCHA) helps humanitarian organizations deliver life-saving assistance
+          and protection for people caught in crises such as conflict or climate
+          disasters.
+        </p>
+
+        <p>
+          <strong>Vincent Tremeau</strong><br />
+          Vincent Tremeau is a French photographer and artist. Since 2014, he
+          has documented humanitarian crises across Africa, Asia, Latin America,
+          and Europe collaborating with organizations advocating for human
+          rights. His work has been featured in prominent media outlets
+          including National Geographic, CNN, BBC, The Guardian, and Le Monde.
+        </p>
+
+        <p>
+          All portraits were taken with the full informed consent of the
+          children and their guardians, in accordance with ethical standards for
+          working with minors in humanitarian contexts.
+        </p>
+      </div>
     </div>
 
     <script src="https://unpkg.com/three"></script>

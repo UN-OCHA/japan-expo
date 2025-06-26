@@ -299,3 +299,20 @@ function drawFundingChart(fundingText) {
     },
   });
 }
+
+// Info disclaimer
+document.getElementById("info-button").addEventListener("click", () => {
+  document.getElementById("info-modal").style.display = "block";
+});
+
+function closeInfoModal() {
+  document.getElementById("info-modal").style.display = "none";
+}
+// Close modal when clicking outside the modal content
+window.addEventListener("click", function (event) {
+  const modal = document.getElementById("info-modal");
+  const content = document.querySelector(".modal-content");
+  if (event.target === modal && !content.contains(event.target)) {
+    closeInfoModal();
+  }
+});
