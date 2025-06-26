@@ -67,7 +67,7 @@ p {
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  z-index: 10;
+  z-index: 21;
   pointer-events: auto;
 }
 
@@ -317,5 +317,24 @@ p {
     font-size: 14px;
     top: 15px;
     left: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  #branding-logos {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    gap: 12px;
+    margin-top: auto;
+    background: #1a1a1a;
+  }
+
+  #branding-logos img {
+    height: 32px;
+    width: auto;
   }
 }
