@@ -117,7 +117,9 @@ function showSidebar(data) {
   document.getElementById("label-concerns").textContent =
     currentLang === "ja" ? "主な懸念事項：" : "Main concerns:";
   document.getElementById("label-funding").textContent =
-    currentLang === "ja" ? "人道支援資金：" : "Humanitarian funding:";
+    currentLang === "ja"
+      ? "支援のための要請額と調達率："
+      : "Humanitarian funding:";
 
   document.getElementById("countryTitle").textContent =
     data[`name${lang}`] || data.name;
