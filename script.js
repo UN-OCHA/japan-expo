@@ -241,6 +241,12 @@ function updateLanguage() {
   ) {
     showSidebar(currentCountry);
   }
+
+  // Toggle info modal text
+  document.getElementById("info-en").style.display =
+    currentLang === "en" ? "block" : "none";
+  document.getElementById("info-ja").style.display =
+    currentLang === "ja" ? "block" : "none";
 }
 
 // Funding charts
