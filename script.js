@@ -98,6 +98,8 @@ loadCountriesFromSheet();
 world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
 world.controls().autoRotate = true;
 world.controls().autoRotateSpeed = 0.1;
+
+// Hide point labels by default
 world.pointLabel(() => null);
 
 world.onPointClick((point) => {
