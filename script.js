@@ -189,7 +189,7 @@ function showSidebar(data) {
     // Eye badge in corner
     const badge = document.createElement("div");
     badge.classList.add("photo-badge");
-    badge.innerHTML = '<i class="far fa-eye"></i>';
+    badge.innerHTML = '<i class="fas fa-magnifying-glass-plus"></i>';
 
     wrapper.appendChild(img);
     wrapper.appendChild(badge);
