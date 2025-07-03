@@ -12,7 +12,7 @@ const world = Globe()(document.getElementById("globeViz"))
   .backgroundColor("#1a1a1a")
   .pointAltitude(0.002)
   .pointRadius(2.5)
-  .pointColor(() => "rgba(237, 24, 71, 1)");
+  .pointColor(() => "#A71F36");
 
 let currentLang = "en"; // 'en' or 'ja'
 
@@ -93,11 +93,28 @@ async function loadCountriesFromSheet() {
   world.pointsData(countries);
 }
 
-loadCountriesFromSheet();
+async function initGlobe() {
+  await loadCountriesFromSheet();
 
-world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
-world.controls().autoRotate = true;
-world.controls().autoRotateSpeed = 0.1;
+  world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
+  world.pointLabel(() => null);
+
+  // NOW controls exist and the globe is scaled
+  const controls = world.controls();
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.1;
+  controls.minDistance = 320;
+  controls.maxDistance = 400;
+}
+
+initGlobe();
+
+// Increase raycasting threshold to make points easier to click
+world.scene().children.forEach((obj) => {
+  if (obj.isPoints) {
+    obj.raycastThreshold = 4; // Increase threshold for better click detection
+  }
+});
 
 // Hide point labels by default
 world.pointLabel(() => null);
