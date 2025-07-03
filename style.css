@@ -168,25 +168,18 @@ p {
   display: block;
 }
 
-/* NEW eye badge in corner */
+/* Icon open badge in corner */
 .photo-badge {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.6);
   color: #fff;
-  border-radius: 50%;
   padding: 6px;
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  transition: background 0.2s ease;
-}
-
-.photo-thumb:hover .photo-badge {
-  background: rgba(0, 0, 0, 0.8);
 }
 
 /* ===========================================
