@@ -11,8 +11,8 @@ const world = Globe()(document.getElementById("globeViz"))
   .atmosphereAltitude(0.25)
   .backgroundColor("#1a1a1a")
   .pointAltitude(0.002)
-  .pointRadius(1.5)
-  .pointColor(() => "rgba(237, 24, 71, 0.7)");
+  .pointRadius(2.5)
+  .pointColor(() => "rgba(237, 24, 71, 1)");
 
 let currentLang = "en"; // 'en' or 'ja'
 
