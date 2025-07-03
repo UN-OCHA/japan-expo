@@ -35,32 +35,46 @@
       >
         <i class="fas fa-times"></i>
       </span>
-      <h2 id="countryTitle">Country name</h2>
-      <div id="pinBlock">
-        <p>
-          <strong id="label-pin">People in need:</strong>
-          <span id="pin">...</span>
-        </p>
-      </div>
 
-      <p>
-        <strong id="label-concerns">Main concerns:</strong>
-        <span id="concerns">...</span>
-      </p>
-      <div id="fundingBlock">
-        <p>
-          <strong id="label-funding">Humanitarian funding:</strong>
-          <span id="funding">...</span>
-        </p>
-
-        <!-- Funding chart  -->
-        <div class="funding-chart-wrapper">
-          <canvas id="fundingChart"></canvas>
+      <div class="sidebar-content">
+        <h2 id="countryTitle">Country name</h2>
+        <div id="pinBlock">
+          <p>
+            <strong id="label-pin">People in need:</strong>
+            <span id="pin">...</span>
+          </p>
         </div>
-      </div>
-      <p id="summary">Short summary here...</p>
 
-      <div class="photo-gallery" id="photoGallery"></div>
+        <p>
+          <strong id="label-concerns">Main concerns:</strong>
+          <span id="concerns">...</span>
+        </p>
+        <div id="fundingBlock">
+          <p>
+            <strong id="label-funding">Humanitarian funding:</strong>
+            <span id="funding">...</span>
+          </p>
+
+          <!-- Funding chart  -->
+          <div class="funding-chart-wrapper">
+            <canvas id="fundingChart"></canvas>
+          </div>
+        </div>
+        <p id="summary">Short summary here...</p>
+
+        <div class="photo-gallery" id="photoGallery"></div>
+      </div>
+
+      <button id="sidebar-close-btn-en" class="sidebar-secondary-close">
+        <i class="fas fa-times"></i> Close
+      </button>
+      <button
+        id="sidebar-close-btn-ja"
+        class="sidebar-secondary-close"
+        style="display: none"
+      >
+        <i class="fas fa-times"></i> 閉じる
+      </button>
     </div>
 
     <div id="lightbox" class="lightbox">
@@ -88,6 +102,16 @@
           <h3 id="lightbox-title"></h3>
           <h4 id="lightbox-subtitle"></h4>
           <p id="lightbox-caption"></p>
+          <button id="lightbox-close-btn-en" class="lightbox-secondary-close">
+            <i class="fas fa-times"></i> Close
+          </button>
+          <button
+            id="lightbox-close-btn-ja"
+            class="lightbox-secondary-close"
+            style="display: none"
+          >
+            <i class="fas fa-times"></i> 閉じる
+          </button>
         </div>
       </div>
     </div>

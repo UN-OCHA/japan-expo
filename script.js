@@ -266,6 +266,18 @@ function updateLanguage() {
     currentLang === "en" ? "block" : "none";
   document.getElementById("info-ja").style.display =
     currentLang === "ja" ? "block" : "none";
+
+  // Toggle sidebar bottom close buttons
+  document.getElementById("sidebar-close-btn-en").style.display =
+    currentLang === "en" ? "block" : "none";
+  document.getElementById("sidebar-close-btn-ja").style.display =
+    currentLang === "ja" ? "block" : "none";
+
+  // Toggle lightbox bottom close buttons
+  document.getElementById("lightbox-close-btn-en").style.display =
+    currentLang === "en" ? "block" : "none";
+  document.getElementById("lightbox-close-btn-ja").style.display =
+    currentLang === "ja" ? "block" : "none";
 }
 
 // Funding charts
@@ -389,3 +401,17 @@ document.getElementById("next-photo").addEventListener("click", () => {
   currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotoList.length;
   openLightbox(currentPhotoList[currentPhotoIndex]);
 });
+
+// Additional bottom close buttons
+document
+  .getElementById("lightbox-close-btn-en")
+  .addEventListener("click", closeLightbox);
+document
+  .getElementById("lightbox-close-btn-ja")
+  .addEventListener("click", closeLightbox);
+document
+  .getElementById("sidebar-close-btn-en")
+  .addEventListener("click", closeSidebar);
+document
+  .getElementById("sidebar-close-btn-ja")
+  .addEventListener("click", closeSidebar);
