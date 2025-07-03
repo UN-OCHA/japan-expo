@@ -96,7 +96,10 @@ async function loadCountriesFromSheet() {
 async function initGlobe() {
   await loadCountriesFromSheet();
 
-  world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 });
+  setTimeout(() => {
+    world.pointOfView({ lat: 36.2048, lng: 138.2529, altitude: 2.2 }, 2000);
+  }, 1500);
+
   world.pointLabel(() => null);
 
   // NOW controls exist and the globe is scaled
@@ -174,12 +177,23 @@ function showSidebar(data) {
   gallery.innerHTML = "";
 
   data.photos.forEach((photo, i) => {
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("photo-thumb");
+
+    wrapper.addEventListener("click", () => openLightbox(photo));
+
     const img = document.createElement("img");
     img.src = photo.url || "";
-    console.log("Photo:", photo);
     img.alt = `Portrait ${i + 1}`;
-    img.addEventListener("click", () => openLightbox(photo));
-    gallery.appendChild(img);
+
+    // Eye badge in corner
+    const badge = document.createElement("div");
+    badge.classList.add("photo-badge");
+    badge.innerHTML = '<i class="far fa-eye"></i>';
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(badge);
+    gallery.appendChild(wrapper);
   });
 
   document.querySelector(".sidebar").classList.add("visible");
