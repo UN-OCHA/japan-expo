@@ -70,7 +70,7 @@ p {
   transition: transform 0.3s ease-in-out;
   z-index: 21;
   pointer-events: auto;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .sidebar.visible {
@@ -206,6 +206,7 @@ p {
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
   color: #fff;
+  touch-action: none;
 }
 
 .lightbox-inner {
