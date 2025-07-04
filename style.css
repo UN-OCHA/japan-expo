@@ -23,6 +23,7 @@ body {
   height: 100%;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
+  touch-action: manipulation;
 }
 
 p {
@@ -58,7 +59,7 @@ p {
   position: fixed;
   top: 0;
   right: 0;
-  width: 25vw;
+  width: 40vw;
   height: 100vh;
   background: #fff;
   color: #000;
@@ -69,6 +70,7 @@ p {
   transition: transform 0.3s ease-in-out;
   z-index: 21;
   pointer-events: auto;
+  touch-action: none;
 }
 
 .sidebar.visible {
