@@ -9,9 +9,10 @@
     <title>One Day I Will - United Nations OCHA</title>
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -26,7 +27,22 @@
     </div>
 
     <div id="globeViz"></div>
+    <div id="start-overlay">
+      <div class="start-content">
+        <i class="fas fa-hand-pointer"></i>
+        <p>
+          Touch to Start<br /><span style="font-size: 0.9em"
+            >タッチして開始</span
+          >
+        </p>
+      </div>
+    </div>
+
     <div id="overlay"></div>
+
+    <button id="reset-button" aria-label="Reset">
+      <i class="fas fa-rotate-right"></i>
+    </button>
 
     <div class="tooltip" id="tooltip"></div>
 
@@ -121,14 +137,14 @@
 
     <div id="branding-logos">
       <img
-        id="ocha-logo"
-        src="img/0_OCHA_logo_horizontal_white_EN.svg"
-        alt="OCHA logo"
-      />
-      <img
         id="one-day-logo"
         src="img/0_one_dat_i_will_logo.png"
         alt="One Day I Will logo"
+      />
+      <img
+        id="ocha-logo"
+        src="img/0_OCHA_logo_horizontal_white_EN.svg"
+        alt="OCHA logo"
       />
     </div>
     <div id="info-button" title="About this exhibit">

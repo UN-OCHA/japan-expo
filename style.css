@@ -10,7 +10,8 @@
    7. Menu
    8. Branding and info
    9. Funding chart
-   10. Responsive media queries
+   10. Start screen and refresh
+   11. Responsive media queries
 
    ==================================================== */
 
@@ -22,7 +23,7 @@ body {
   margin: 0;
   height: 100%;
   overflow: hidden;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
   touch-action: manipulation;
   overscroll-behavior: none;
 }
@@ -380,24 +381,25 @@ p {
 
 #branding-logos {
   position: fixed;
-  bottom: 40px;
+  bottom: 36px;
   left: 0;
   right: 0;
   z-index: 9;
   display: flex;
-  justify-content: space-between;
-  padding: 0 44px;
+  justify-content: flex-end;
+  gap: 44px;
+  padding: 0 36px;
   pointer-events: none;
 }
 
 #branding-logos img {
-  height: 48px;
+  height: 44px;
   pointer-events: auto;
 }
 #info-button {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 36px;
+  right: 36px;
   font-size: 22px;
   color: white;
   background-color: rgba(0, 0, 0, 0.4);
@@ -475,7 +477,69 @@ p {
 }
 
 /* ===========================================
-  10. Responsive  media queries
+  10. Start screen and refresh
+   =========================================== */
+
+#start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+
+#start-overlay i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+#start-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#reset-button {
+  position: fixed;
+  bottom: 36px;
+  left: 36px;
+  z-index: 10000000000;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.75rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#reset-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 1;
+}
+
+#reset-button i {
+  pointer-events: none;
+}
+
+/* ===========================================
+  11. Responsive  media queries
    =========================================== */
 
 @media (max-width: 1024px) {

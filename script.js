@@ -112,6 +112,14 @@ async function initGlobe() {
 
 initGlobe();
 
+// Start overlay click handler
+document.getElementById("start-overlay").addEventListener("click", () => {
+  document.getElementById("start-overlay").classList.add("hidden");
+  // Start auto-rotation if you want
+  const controls = world.controls();
+  controls.autoRotate = true;
+});
+
 // Increase raycasting threshold to make points easier to click
 world.scene().children.forEach((obj) => {
   if (obj.isPoints) {
@@ -429,3 +437,73 @@ document
 document
   .getElementById("sidebar-close-btn-ja")
   .addEventListener("click", closeSidebar);
+
+// Idle timeout in milliseconds (5 minutes)
+const IDLE_TIMEOUT = 1 * 60 * 1000;
+let idleTimer = null;
+
+function resetIdleTimer() {
+  // Clear any existing timer
+  if (idleTimer) {
+    clearTimeout(idleTimer);
+  }
+
+  // Start a new timer
+  idleTimer = setTimeout(() => {
+    console.log("No activity detected. Refreshing...");
+    location.reload();
+  }, IDLE_TIMEOUT);
+}
+
+// Events that reset the idle timer
+const activityEvents = [
+  "mousemove",
+  "mousedown",
+  "touchstart",
+  "touchmove",
+  "keydown",
+];
+
+// Attach listeners
+activityEvents.forEach((event) => {
+  document.addEventListener(event, resetIdleTimer, { passive: true });
+});
+
+// Start timer on page load
+resetIdleTimer();
+
+// Reset button to reload the page
+document.getElementById("reset-button").addEventListener("click", () => {
+  location.reload();
+});
+
+// Lock zoom
+// 1) Prevent mobile Safari pinch
+document.addEventListener("gesturestart", (e) => e.preventDefault());
+
+// 2) Prevent Windows touch-pad / Chrome “ctrl+wheel” zoom
+window.addEventListener(
+  "wheel",
+  (e) => {
+    if (e.ctrlKey) e.preventDefault();
+  },
+  { passive: false }
+);
+
+// 3) Block two-finger touchmove on any element
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (e.touches.length > 1) {
+      e.preventDefault();
+    }
+  },
+  { passive: false }
+);
+
+// 4) Also block Ctrl + “+” / “-” / “0” keyboard zoom
+window.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && ["=", "-", "0"].includes(e.key)) {
+    e.preventDefault();
+  }
+});
