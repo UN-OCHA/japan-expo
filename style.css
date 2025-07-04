@@ -24,6 +24,7 @@ body {
   overflow: hidden;
   font-family: "Roboto", sans-serif;
   touch-action: manipulation;
+  overscroll-behavior: none;
 }
 
 p {
