@@ -439,7 +439,7 @@ document
   .addEventListener("click", closeSidebar);
 
 // Idle timeout in milliseconds (5 minutes)
-const IDLE_TIMEOUT = 1 * 60 * 1000;
+const IDLE_TIMEOUT = 5 * 60 * 1000;
 let idleTimer = null;
 
 function resetIdleTimer() {
